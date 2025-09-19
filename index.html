@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EconomyBot - Экономический Discord бот</title>
+    <style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255, 0, 60, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 75% 75%, rgba(0, 200, 255, 0.05) 0%, transparent 20%);
+        }
+        
+        /* Контейнер для контента */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Заголовки */
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, #ff003c, #00c8ff, #ff003c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(255, 0, 60, 0.5);
+            animation: gradient-shift 8s ease infinite;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            color: #00c8ff;
+            text-shadow: 0 0 10px rgba(0, 200, 255, 0.7);
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: #ff2b2b;
+            text-shadow: 0 0 8px rgba(255, 43, 43, 0.5);
+        }
+        
+        /* Навигация */
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        nav::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff003c, #00c8ff, #ff003c, transparent);
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: #00c8ff;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #00c8ff;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            transform: scaleX(1);
+        }
+        
+        /* Секции */
+        section {
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            background-color: rgba(15, 15, 25, 0.8);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .border-glow {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            z-index: -1;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #ff003c, #00c8ff, #ff003c, #00c8ff);
+            background-size: 400%;
+            animation: border-glow 12s linear infinite;
+            opacity: 0.7;
+        }
+        
+        /* Карточки систем */
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .system-card {
+            background: linear-gradient(145deg, rgba(20, 20, 30, 0.9), rgba(10, 10, 20, 0.9));
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .system-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff003c, #00c8ff);
+        }
+        
+        .system-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .system-card h3 {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .system-card h3 .icon {
+            font-size: 1.5rem;
+        }
+        
+        .system-card p {
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #aaa;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-list li:before {
+            content: '•';
+            color: #00c8ff;
+            font-weight: bold;
+        }
+        
+        /* Кнопки */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #ff003c, #00c8ff);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        /* Футер */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ff003c, #00c8ff, #ff003c, transparent);
+        }
+        
+        footer p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Анимации */
+        @keyframes border-glow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+        
+        /* Статистика */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 40px 0;
+            gap: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            flex: 1;
+            min-width: 200px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff003c, #00c8ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #aaa;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav a {
+                margin: 5px 0;
+            }
+            
+            .systems-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="#about">О боте</a>
+            <a href="#systems">Системы</a>
+            <a href="#features">Возможности</a>
+            <a href="#stats">Статистика</a>
+            <a href="#commands">Команды</a>
+        </nav>
+        
+        <section id="hero">
+            <div class="border-glow"></div>
+            <h1>EconomyBot</h1>
+            <p>Многофункциональный экономический Discord бот с уникальными системами для вашего сервера. Увеличьте активность участников с помощью продуманной экономической системы.</p>
+            <a href="#systems" class="btn">Узнать о возможностях</a>
+        </section>
+        
+        <section id="about">
+            <div class="border-glow"></div>
+            <h2>О EconomyBot</h2>
+            <p>EconomyBot — это инновационный Discord бот, разработанный для создания engaging-экономики на вашем сервере. Бот сочетает в себе несколько взаимосвязанных систем, которые обеспечивают долгосрочную вовлеченность участников.</p>
+            <p>С помощью EconomyBot вы можете создать vibrant виртуальную экономику, где участники могут зарабатывать валюту, развивать бизнес, заниматься майнингом и многое другое.</p>
+        </section>
+        
+        <section id="stats">
+            <div class="border-glow"></div>
+            <h2>Статистика бота</h2>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Серверов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50k+</div>
+                    <div class="stat-label">Пользователей</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Аптайм</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">60+</div>
+                    <div class="stat-label">Команд</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="systems">
+            <div class="border-glow"></div>
+            <h2>Основные системы</h2>
+            <div class="systems-grid">
+                <div class="system-card">
+                    <h3><span class="icon">💼</span> Система бизнеса</h3>
+                    <p>Позволяет пользователям создавать и управлять собственным бизнесом, нанимать сотрудников и получать прибыль.</p>
+                    <ul class="feature-list">
+                        <li>Создание бизнеса любой отрасли</li>
+                        <li>Найм и управление сотрудниками</li>
+                        <li>Улучшение бизнеса и расширение</li>
+                        <li>Конкуренция с другими бизнесами</li>
+                        <li>Ежедневная прибыль и бонусы</li>
+                    </ul>
+                </div>
+                
+                <div class="system-card">
+                    <h3><span class="icon">⛏️</span> Система майнинга</h3>
+                    <p>Инновационная система майнинга криптовалюты с различными уровнями сложности и оборудованием.</p>
+                    <ul class="feature-list">
+                        <li>Различные криптовалюты для майнинга</li>
+                        <li>Покупка и улучшение майнингового оборудования</li>
+                        <li>Энергопотребление и окупаемость</li>
+                        <li>Редкие ресурсы и события</li>
+                        <li>Автоматический и ручной майнинг</li>
+                    </ul>
+                </div>
+                
+                <div class="system-card">
+                    <h3><span class="icon">💰</span> Экономическая система</h3>
+                    <p>Полноценная экономика с работой, банком, магазином и возможностью инвестирования.</p>
+                    <ul class="feature-list">
+                        <li>Работа с ежедневными заданиями</li>
+                        <li>Банковская система с процентами</li>
+                        <li>Магазин предметов и имущества</li>
+                        <li>Инвестиции и фондовый рынок</li>
+                        <li>Ежедневные бонусы и награды</li>
+                    </ul>
+                </div>
+                
+                <div class="system-card">
+                    <h3><span class="icon">🛡️</span> Система модерации</h3>
+                    <p>Мощные инструменты модерации, интегрированные с экономической системой.</p>
+                    <ul class="feature-list">
+                        <li>Модерация с материальной ответственностью</li>
+                        <li>Система предупреждений и банов</li>
+                        <li>Логирование действий модераторов</li>
+                        <li>Автоматическая модерация</li>
+                        <li>Награды для активных модераторов</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="features">
+            <div class="border-glow"></div>
+            <h2>Дополнительные возможности</h2>
+            <div class="systems-grid">
+                <div class="system-card">
+                    <h3><span class="icon">🎲</span> Игровые команды</h3>
+                    <p>Разнообразные азартные игры и развлечения для заработка виртуальной валюты.</p>
+                    <ul class="feature-list">
+                        <li>Рулетка и игровые автоматы</li>
+                        <li>Карточные игры и ставки</li>
+                        <li>Лотереи и розыгрыши</li>
+                        <li>Ежедневные испытания</li>
+                    </ul>
+                </div>
+                
+                <div class="system-card">
+                    <h3><span class="icon">🏆</span> Система достижений</h3>
+                    <p>Награды и достижения за выполнение различных задач и активность.</p>
+                    <ul class="feature-list">
+                        <li>Уникальные достижения</li>
+                        <li>Награды за выполнение задач</li>
+                        <li>Таблица лидеров</li>
+                        <li>Сезонные события</li>
+                    </ul>
+                </div>
+                
+                <div class="system-card">
+                    <h3><span class="icon">🔧</span> Настройка и кастомизация</h3>
+                    <p>Гибкая настройка бота под нужды вашего сервера.</p>
+                    <ul class="feature-list">
+                        <li>Настройка валюты и префиксов</li>
+                        <li>Кастомизация сообщений</li>
+                        <li>Роли и права доступа</li>
+                        <li>Интеграция с другими ботами</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="commands">
+            <div class="border-glow"></div>
+            <h2>Основные команды</h2>
+            <div class="systems-grid">
+                <div class="system-card">
+                    <h3><span class="icon">💵</span> Экономика</h3>
+                    <ul class="feature-list">
+                        <li><code>!balance</code> - Проверить баланс</li>
+                        <li><code>!work</code> - Выполнить работу</li>
+                        <li><code>!transfer</code> - Перевести деньги</li>
+                        <li><code>!shop</code> - Открыть магазин</li>
+                        <li><code>!buy</code> - Купить предмет</li>
+                    </ul>
+                </div>
+                
+                <div class="system-card">
+                    <h3><span class="icon">💼</span> Бизнес</h3>
+                    <ul class="feature-list">
+                        <li><code>!business create</code> - Создать бизнес</li>
+                        <li><code>!business hire</code> - Нанять сотрудника</li>
+                        <li><code>!business upgrade</code> - Улучшить бизнес</li>
+                        <li><code>!business profit</code> - Получить прибыль</li>
+                    </ul>
+                </div>
+                
+                <div class="system-card">
+                    <h3><span class="icon">⛏️</span> Майнинг</h3>
+                    <ul class="feature-list">
+                        <li><code>!mining start</code> - Начать майнинг</li>
+                        <li><code>!mining upgrade</code> - Улучшить оборудование</li>
+                        <li><code>!mining stats</code> - Статистика майнинга</li>
+                        <li><code>!mining sell</code> - Продать криптовалюту</li>
+                    </ul>
+                </div>
+                
+                <div class="system-card">
+                    <h3><span class="icon">🛡️</span> Модерация</h3>
+                    <ul class="feature-list">
+                        <li><code>!warn</code> - Выдать предупреждение</li>
+                        <li><code>!mute</code> - Заглушить пользователя</li>
+                        <li><code>!ban</code> - Забанить пользователя</li>
+                        <li><code>!clear</code> - Очистить сообщения</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2023 EconomyBot - Экономический Discord бот. Все права защищены.</p>
+            <p>По вопросам сотрудничества: contact@economybot.com</p>
+        </footer>
+    </div>
+
+    <script>
+        // Простая анимация для элементов при прокрутке
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.system-card, .stat-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(element);
+            });
+            
+            // Плавная прокрутка для навигации
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
