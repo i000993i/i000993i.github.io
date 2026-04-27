@@ -1,187 +1,383 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DBScommunity — Портфолио</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-dark: #0d1117;
-      --bg-darker: #010409;
-      --accent-red: #ff4444;
-      --gradient-border: linear-gradient(135deg, #ff4444, #7a0d09);
-      --text-primary: #e6edf3;
-      --text-secondary: #8b949e;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>EconomyBot-DBS — официальная документация</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
+        body {
+            background: #0a0a0a;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #e8e8e8;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
 
-    body {
-      background-color: var(--bg-dark);
-      color: var(--text-primary);
-      line-height: 1.6;
-    }
+        /* кастомный скролл */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c0392b;
+            border-radius: 10px;
+        }
 
-    header {
-      padding: 1rem 2rem;
-      background-color: var(--bg-darker);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(240, 46, 170, 0.1);
-    }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
 
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--accent-red);
-    }
+        /* ========== ХЕДЕР ========== */
+        .header {
+            background: #050505;
+            border-bottom: 1px solid #2a2a2a;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            background: rgba(5,5,5,0.95);
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 16px 0;
+            gap: 16px;
+        }
+        .logo h1 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            background: linear-gradient(130deg, #ffffff, #e74c3c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .logo p {
+            font-size: 0.75rem;
+            color: #888;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 0.9rem;
+        }
+        .nav-links a:hover {
+            color: #e74c3c;
+        }
 
-    nav a {
-      color: var(--text-primary);
-      text-decoration: none;
-      margin-left: 1.5rem;
-      transition: color 0.2s;
-    }
+        /* ========== ГЕРОЙ ========== */
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+            border-bottom: 1px solid #1f1f1f;
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .hero-accent {
+            color: #e74c3c;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin: 0 auto;
+            color: #aaa;
+        }
 
-    nav a:hover {
-      color: var(--accent-red);
-    }
+        /* ========== СЕКЦИИ ========== */
+        .section {
+            margin: 50px 0;
+            scroll-margin-top: 80px;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 4px solid #e74c3c;
+            color: #fff;
+        }
 
-    .banner {
-      padding: 4rem 2rem;
-      text-align: center;
-      background: linear-gradient(135deg, rgba(255, 68, 68, 0.1), transparent);
-    }
+        /* карточки команд */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.2rem;
+        }
+        .cmd-card {
+            background: #111;
+            border-radius: 16px;
+            padding: 1.2rem;
+            border: 1px solid #262626;
+            transition: all 0.2s;
+        }
+        .cmd-card:hover {
+            border-color: #e74c3c;
+            transform: translateY(-2px);
+            background: #141414;
+        }
+        .cmd-name {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: #1a1a1a;
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            color: #e74c3c;
+            margin-bottom: 0.7rem;
+            letter-spacing: 0.3px;
+        }
+        .cmd-desc {
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        .cmd-example {
+            font-size: 0.8rem;
+            color: #e74c3c;
+            margin-top: 8px;
+            font-family: monospace;
+            background: #1a1a1a;
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
 
-    .banner h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
+        /* информационные блоки */
+        .info-box {
+            background: #0d0d0d;
+            border-left: 4px solid #e74c3c;
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+        .info-box strong {
+            color: #e74c3c;
+        }
 
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+        hr {
+            border: none;
+            height: 1px;
+            background: #222;
+            margin: 2rem 0;
+        }
 
-    .project-brick {
-      background-color: var(--bg-darker);
-      border-radius: 8px;
-      overflow: hidden;
-      position: relative;
-      border: 1px solid rgba(240, 46, 170, 0.2);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+        /* футер */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid #1c1c1c;
+            margin-top: 3rem;
+            color: #666;
+            font-size: 0.8rem;
+        }
 
-    .project-brick:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .project-brick::before {
-      content: "";
-      position: absolute;
-      top: -1px;
-      left: -1px;
-      right: -1px;
-      bottom: -1px;
-      background: var(--gradient-border);
-      z-index: -1;
-      border-radius: 9px;
-    }
-
-    .project-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .project-info {
-      padding: 1.25rem;
-    }
-
-    .project-number {
-      color: var(--accent-red);
-      font-weight: 600;
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .project-title {
-      font-size: 1.25rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .project-desc {
-      color: var(--text-secondary);
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-    }
-
-    .technologies {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .tech-tag {
-      background-color: rgba(255, 68, 68, 0.1);
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      border: 1px solid rgba(255, 68, 68, 0.3);
-    }
-
-    @media (max-width: 768px) {
-      .projects {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-      }
-    }
-  </style>
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="logo">DBScommunity</div>
-    <nav>
-      <a href="#">Проекты</a>
-      <a href="#">О студии</a>
-      <a href="#">Контакты</a>
-    </nav>
-  </header>
 
-  <section class="banner">
-    <h1>Творческие проекты</h1>
-    <p>Портфолио студии DBScommunity</p>
-  </section>
-
-  <section class="projects">
-    <div class="project-brick">
-      <img src="images/project1.png" alt="Проект 1" class="project-image">
-      <div class="project-info">
-        <div class="project-number">#01</div>
-        <h3 class="project-title">Название проекта</h3>
-        <p class="project-desc">Краткое описание проекта, его цели и особенности реализации.</p>
-        <div class="technologies">
-          <span class="tech-tag">React</span>
-          <span class="tech-tag">Node.js</span>
-          <span class="tech-tag">MongoDB</span>
+<div class="header">
+    <div class="container header-inner">
+        <div class="logo">
+            <h1>💰 EconomyBot-DBS</h1>
+            <p>игровая экономика в Telegram</p>
         </div>
-      </div>
+        <div class="nav-links">
+            <a href="#start">🚀 Старт</a>
+            <a href="#economy">💰 Баланс</a>
+            <a href="#business">🏢 Бизнес</a>
+            <a href="#mining">⛏️ Майнинг</a>
+            <a href="#games">🎮 Игры</a>
+            <a href="#realty">🏠 Недвижимость</a>
+            <a href="#bank">🏦 Банк</a>
+            <a href="#farm">🌾 Ферма</a>
+            <a href="#top">🏆 Топы</a>
+            <a href="#bonus">🎁 Бонусы</a>
+        </div>
+    </div>
+</div>
+
+<div class="hero">
+    <div class="container">
+        <h2>Добро пожаловать в <span class="hero-accent">EconomyBot-DBS</span></h2>
+        <p>Ваша личная экономическая империя: бизнесы, майнинг, недвижимость, аукционы и многое другое.<br>
+        Все команды работают в личных сообщениях и группах (бота нужно сделать администратором).</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- СТАРТ -->
+    <div id="start" class="section">
+        <h2 class="section-title">🚀 Первые шаги</h2>
+        <div class="info-box">
+            <strong>📌 /start</strong> — зарегистрироваться и получить <strong>1 000 RUB</strong> стартового капитала.<br>
+            💡 После регистрации вам станут доступны все команды бота.
+        </div>
     </div>
 
-    <!-- Повторите блок .project-brick для каждого проекта -->
-  </section>
+    <!-- ЭКОНОМИКА / БАЛАНС -->
+    <div id="economy" class="section">
+        <h2 class="section-title">💰 Баланс и переводы</h2>
+        <div class="cards-grid">
+            <div class="cmd-card"><span class="cmd-name">/bal</span><div class="cmd-desc">Показать ваш баланс в RUB, USD, EUR, BTC и общую сумму.</div></div>
+            <div class="cmd-card"><span class="cmd-name">/pay @user сумма RUB</span><div class="cmd-desc">Перевод другому игроку (комиссия 0.5%).</div><div class="cmd-example">/pay @durov 1000 RUB</div></div>
+            <div class="cmd-card"><span class="cmd-name">/transfer сумма из в</span><div class="cmd-desc">Обмен валют (RUB, USD, EUR, BTC) — комиссия 1%.</div><div class="cmd-example">/transfer 100 RUB USD</div></div>
+            <div class="cmd-card"><span class="cmd-name">/stock</span><div class="cmd-desc">Актуальные курсы USD/RUB, EUR/RUB и BTC/USD.</div></div>
+        </div>
+    </div>
+
+    <!-- БИЗНЕСЫ -->
+    <div id="business" class="section">
+        <h2 class="section-title">🏢 Бизнесы</h2>
+        <div class="cards-grid">
+            <div class="cmd-card"><span class="cmd-name">/bizshop</span><div class="cmd-desc">Магазин бизнесов (русские, американские, европейские).</div></div>
+            <div class="cmd-card"><span class="cmd-name">/buybiz ID</span><div class="cmd-desc">Купить бизнес — приносит доход каждый час.</div><div class="cmd-example">/buybiz 5</div></div>
+            <div class="cmd-card"><span class="cmd-name">/mybiz</span><div class="cmd-desc">Список ваших бизнесов и доход/час.</div></div>
+            <div class="cmd-card"><span class="cmd-name">/upgrades ID тип</span><div class="cmd-desc">Улучшить бизнес: income (+20% дохода) или tax (-3% налога).</div><div class="cmd-example">/upgrades 1 income</div></div>
+            <div class="cmd-card"><span class="cmd-name">/collect</span><div class="cmd-desc">Ручной сбор прибыли с бизнесов и майнинга.</div></div>
+            <div class="cmd-card"><span class="cmd-name">/givbiz @user ID</span><div class="cmd-desc">Передать бизнес другому игроку.</div><div class="cmd-example">/givbiz @durov 2</div></div>
+        </div>
+        <div class="info-box">💡 Прибыль с бизнесов начисляется автоматически каждый час — не нужно собирать вручную (но можно ускорить /collect).</div>
+    </div>
+
+    <!-- МАЙНИНГ -->
+    <div id="mining" class="section">
+        <h2 class="section-title">⛏️ Майнинг</h2>
+        <div class="cards-grid">
+            <div class="cmd-card"><span class="cmd-name">/shopmining</span><div class="cmd-desc">Магазин оборудования: видеокарты, ASIC, фермы (цена в USD).</div></div>
+            <div class="cmd-card"><span class="cmd-name">/buymining ID</span><div class="cmd-desc">Купить оборудование (мощность в BTC/3ч).</div><div class="cmd-example">/buymining 1</div></div>
+            <div class="cmd-card"><span class="cmd-name">/mymining</span><div class="cmd-desc">Ваше оборудование, общая мощность и доходность.</div></div>
+            <div class="cmd-card"><span class="cmd-name">/sellmining ID</span><div class="cmd-desc">Продать оборудование за 70% от цены.</div><div class="cmd-example">/sellmining 5</div></div>
+            <div class="cmd-card"><span class="cmd-name">/miningstats</span><div class="cmd-desc">Статистика майнинга: окупаемость, ежедневная прибыль.</div></div>
+        </div>
+        <div class="info-box">⚡ Прибыль с майнинга начисляется автоматически раз в 3 часа. Максимум — 1000 единиц оборудования.</div>
+    </div>
+
+    <!-- ИГРЫ -->
+    <div id="games" class="section">
+        <h2 class="section-title">🎮 Азартные игры</h2>
+        <div class="cards-grid">
+            <div class="cmd-card"><span class="cmd-name">/casino сумма RUB</span><div class="cmd-desc">Однорукий бандит. Джекпот x8, комбинации до x4.</div><div class="cmd-example">/casino 100 RUB</div></div>
+            <div class="cmd-card"><span class="cmd-name">/cube сумма RUB</span><div class="cmd-desc">Кубики с ботом — выигрыш зависит от разницы очков.</div><div class="cmd-example">/cube 50 USD</div></div>
+            <div class="cmd-card"><span class="cmd-name">/basketball /football /bowling</span><div class="cmd-desc">Спортивные игры с множителями до x3.0.</div><div class="cmd-example">/basketball 200 RUB</div></div>
+            <div class="cmd-card"><span class="cmd-name">/mystats</span><div class="cmd-desc">Ваша статистика: сколько побед, поражений и общий выигрыш.</div></div>
+            <div class="cmd-card"><span class="cmd-name">/gamecd</span><div class="cmd-desc">Узнать оставшееся время до следующей игры.</div></div>
+        </div>
+        <div class="info-box">🎯 Все игры сбалансированы: шанс выигрыша ~35–40%, чтобы играть было интересно, но без легких денег.</div>
+    </div>
+
+    <!-- НЕДВИЖИМОСТЬ -->
+    <div id="realty" class="section">
+        <h2 class="section-title">🏡 Недвижимость и аренда</h2>
+        <div class="cards-grid">
+            <div class="cmd-card"><span class="cmd-name">/shopned</span><div class="cmd-desc">Магазин: дома (RUB) и транспорт (RUB).</div></div>
+            <div class="cmd-card"><span class="cmd-name">/buyned houseID</span><div class="cmd-desc">Купить дом и сдавать в аренду.</div><div class="cmd-example">/buyned house3</div></div>
+            <div class="cmd-card"><span class="cmd-name">/buyned carID</span><div class="cmd-desc">Купить автомобиль и улучшать его.</div><div class="cmd-example">/buyned car5</div></div>
+            <div class="cmd-card"><span class="cmd-name">/myned</span><div class="cmd-desc">Управление недвижимостью: сдать в аренду, улучшить, продать.</div></div>
+            <div class="cmd-card"><span class="cmd-name">/setrent ID_дома цена</span><div class="cmd-desc">Установить стоимость аренды дома.</div><div class="cmd-example">/setrent 1 5000</div></div>
+            <div class="cmd-card"><span class="cmd-name">/rent @владелец ID</span><div class="cmd-desc">Арендовать дом у другого игрока (цена в час).</div><div class="cmd-example">/rent @durov 2</div></div>
+            <div class="cmd-card"><span class="cmd-name">/rentlist</span><div class="cmd-desc">Список домов, доступных для аренды.</div></div>
+            <div class="cmd-card"><span class="cmd-name">/unrent</span><div class="cmd-desc">Съехать из арендованного жилья.</div></div>
+        </div>
+        <div class="info-box">📌 Налог на недвижимость списывается раз в день. Дома приносят пассивный доход через аренду.</div>
+    </div>
+
+    <!-- БАНК -->
+    <div id="bank" class="section">
+        <h2 class="section-title">🏦 Банк и проценты</h2>
+        <div class="cards-grid">
+            <div class="cmd-card"><span class="cmd-name">/bank</span><div class="cmd-desc">Баланс в банке, начисление процентов (RUB).</div></div>
+            <div class="cmd-card"><span class="cmd-name">/paybank сумма RUB</span><div class="cmd-desc">Положить деньги в банк — +2% каждые 10 минут.</div><div class="cmd-example">/paybank 5000 RUB</div></div>
+            <div class="cmd-card"><span class="cmd-name">/sellbank сумма RUB</span><div class="cmd-desc">Снять RUB с банковского счёта.</div><div class="cmd-example">/sellbank 2000 RUB</div></div>
+        </div>
+        <div class="info-box">📈 Проценты начисляются только на RUB. Доллары и евро в банке просто хранятся без процентов.</div>
+    </div>
+
+    <!-- ФЕРМА -->
+    <div id="farm" class="section">
+        <h2 class="section-title">🌾 Ферма и мешок</h2>
+        <div class="cards-grid">
+            <div class="cmd-card"><span class="cmd-name">/farm , ферма , урожай</span><div class="cmd-desc">Собрать урожай раз в 2 часа. Награда 1–15 🪙 Койн-DBS.</div></div>
+            <div class="cmd-card"><span class="cmd-name">/bag , мешок</span><div class="cmd-desc">Ваш уровень, прогресс и баланс фермерских монет.</div></div>
+            <div class="cmd-card"><span class="cmd-name">/farmtop</span><div class="cmd-desc">Топ-25 фермеров по количеству 🪙 Койн-DBS.</div></div>
+            <div class="cmd-card"><span class="cmd-name">/myfarmrank</span><div class="cmd-desc">Ваше место в рейтинге фермеров.</div></div>
+        </div>
+        <div class="info-box">🌱 Уровни фермера: новичок → любитель → опытный → фермер → барин → король фермы. Каждые 100 монет = новый уровень.</div>
+    </div>
+
+    <!-- ТОПЫ -->
+    <div id="top" class="section">
+        <h2 class="section-title">🏆 Таблицы лидеров</h2>
+        <div class="cards-grid">
+            <div class="cmd-card"><span class="cmd-name">/top</span><div class="cmd-desc">Глобальный топ-25 по общему богатству (RUB).</div></div>
+            <div class="cmd-card"><span class="cmd-name">/topchat</span><div class="cmd-desc">Самые активные участники текущего чата (по количеству сообщений).</div></div>
+            <div class="cmd-card"><span class="cmd-name">/myrank</span><div class="cmd-desc">Ваша позиция в глобальном топе и отставание до топ‑10.</div></div>
+            <div class="cmd-card"><span class="cmd-name">/mychatrank</span><div class="cmd-desc">Ваше место в топе активности этого чата.</div></div>
+        </div>
+    </div>
+
+    <!-- БОНУСЫ -->
+    <div id="bonus" class="section">
+        <h2 class="section-title">🎁 Бонусы и награды</h2>
+        <div class="cards-grid">
+            <div class="cmd-card"><span class="cmd-name">/bonus</span><div class="cmd-desc">Ежедневный бонус (от 1000₽ до 7000₽). 7-дневный цикл.</div></div>
+            <div class="cmd-card"><span class="cmd-name">/bonusinfo</span><div class="cmd-desc">Информация о следующем бонусе и дне цикла.</div></div>
+            <div class="cmd-card"><span class="cmd-name">/awards</span><div class="cmd-desc">Ваши медали и награды.</div></div>
+            <div class="cmd-card"><span class="cmd-name">/active</span><div class="cmd-desc">Сгенерировать красивый HTML-отчёт с круговой диаграммой баланса.</div></div>
+        </div>
+        <div class="info-box">⚠️ Если пропустить бонус более чем на 48 часов, прогресс сбрасывается до 1‑го дня.</div>
+    </div>
+
+    <hr>
+
+    <div class="info-box" style="background: #080808; text-align: center;">
+        💬 <strong>Нужна помощь?</strong> Напишите <code>/help</code> в чате с ботом или обратитесь к администратору.<br>
+        🤖 <strong>Официальный бот:</strong> @GameDBScommunity_bot<br>
+        📅 Документация актуальна на апрель 2026 года.
+    </div>
+
+</div>
+
+<div class="footer">
+    EconomyBot-DBS — автор i000993i | Все команды работают в личных сообщениях и группах.<br>
+    Дизайн: чёрный + акцент «красный» | Версия 2.0
+</div>
+
 </body>
-</html>
+                                                                                                                                             </html>
