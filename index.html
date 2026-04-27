@@ -19,7 +19,6 @@
             scroll-behavior: smooth;
         }
 
-        /* кастомный скролл */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -31,21 +30,115 @@
             border-radius: 10px;
         }
 
+        .app-wrapper {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* ========== SIDEBAR ========== */
+        .sidebar {
+            width: 280px;
+            background: #050505e6;
+            backdrop-filter: blur(8px);
+            border-right: 1px solid #2a2a2a;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 1.5rem 1rem;
+            transition: transform 0.3s ease;
+            z-index: 200;
+            flex-shrink: 0;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #e74c3c;
+            border: none;
+            border-radius: 60px;
+            width: 54px;
+            height: 54px;
+            font-size: 28px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(231,76,60,0.4);
+            z-index: 250;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .sidebar nav li {
+            margin: 1.2rem 0;
+        }
+        .sidebar nav a {
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            padding: 8px 8px;
+            border-radius: 12px;
+        }
+        .sidebar nav a:hover {
+            color: #e74c3c;
+            background: #181818;
+        }
+        .sidebar .logo-mini {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #262626;
+        }
+        .sidebar .logo-mini h3 {
+            font-size: 1.4rem;
+            background: linear-gradient(130deg, #ffffff, #e74c3c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .achievement-nav-btn {
+            background: linear-gradient(95deg, #2c0f0a, #1e0a07);
+            border: 1px solid #e74c3c;
+            margin-top: 20px;
+            border-radius: 40px;
+        }
+        .achievement-nav-btn a {
+            justify-content: center;
+            font-weight: 700;
+            color: #f5c2b0;
+        }
+
+        /* ========== MAIN CONTENT ========== */
+        .main-content {
+            flex: 1;
+            min-width: 0;
+            background: #0a0a0a;
+        }
+
         .container {
             max-width: 1300px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* ========== ХЕДЕР ========== */
         .header {
-            background: #050505;
+            background: #050505cc;
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid #2a2a2a;
             position: sticky;
             top: 0;
-            z-index: 100;
-            backdrop-filter: blur(12px);
-            background: rgba(5,5,5,0.95);
+            z-index: 90;
         }
         .header-inner {
             display: flex;
@@ -76,14 +169,12 @@
             color: #ccc;
             text-decoration: none;
             font-weight: 500;
-            transition: 0.2s;
             font-size: 0.9rem;
         }
         .nav-links a:hover {
             color: #e74c3c;
         }
 
-        /* ========== ГЕРОЙ ========== */
         .hero {
             padding: 60px 0 40px;
             text-align: center;
@@ -92,19 +183,11 @@
         .hero h2 {
             font-size: 2.5rem;
             font-weight: 800;
-            margin-bottom: 1rem;
         }
         .hero-accent {
             color: #e74c3c;
         }
-        .hero p {
-            font-size: 1.1rem;
-            max-width: 650px;
-            margin: 0 auto;
-            color: #aaa;
-        }
 
-        /* ========== СЕКЦИИ ========== */
         .section {
             margin: 50px 0;
             scroll-margin-top: 80px;
@@ -118,7 +201,6 @@
             color: #fff;
         }
 
-        /* карточки команд */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -134,37 +216,22 @@
         .cmd-card:hover {
             border-color: #e74c3c;
             transform: translateY(-2px);
-            background: #141414;
         }
         .cmd-name {
             font-family: 'Courier New', monospace;
             font-weight: 700;
-            font-size: 1.1rem;
             background: #1a1a1a;
             display: inline-block;
             padding: 0.2rem 0.8rem;
             border-radius: 20px;
             color: #e74c3c;
             margin-bottom: 0.7rem;
-            letter-spacing: 0.3px;
         }
         .cmd-desc {
             color: #bbb;
             font-size: 0.9rem;
-            line-height: 1.4;
-        }
-        .cmd-example {
-            font-size: 0.8rem;
-            color: #e74c3c;
-            margin-top: 8px;
-            font-family: monospace;
-            background: #1a1a1a;
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 12px;
         }
 
-        /* информационные блоки */
         .info-box {
             background: #0d0d0d;
             border-left: 4px solid #e74c3c;
@@ -172,18 +239,62 @@
             border-radius: 12px;
             margin: 1.5rem 0;
         }
-        .info-box strong {
-            color: #e74c3c;
+
+        /* Achievements gallery - 10 frames 1264x816 */
+        .achievements-pure {
+            margin: 40px 0 60px 0;
+            scroll-margin-top: 90px;
+        }
+        .achievements-title {
+            font-size: 2rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .achievements-title span {
+            background: #e74c3c;
+            padding: 4px 16px;
+            border-radius: 60px;
+            font-size: 1rem;
+        }
+        .gallery-strict {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            justify-items: center;
+        }
+        .achievement-frame {
+            background: #0c0c0c;
+            border-radius: 24px;
+            padding: 0.75rem;
+            border: 1px solid #2c2c2c;
+            transition: 0.2s;
+            width: 100%;
+            max-width: 100%;
+        }
+        .achievement-frame:hover {
+            border-color: #e74c3c;
+            transform: translateY(-4px);
+        }
+        .achievement-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+            aspect-ratio: 1264 / 816;
+            object-fit: cover;
+        }
+        .frame-caption {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #c0c0c0;
         }
 
-        hr {
-            border: none;
-            height: 1px;
-            background: #222;
-            margin: 2rem 0;
-        }
-
-        /* футер */
         .footer {
             text-align: center;
             padding: 2rem;
@@ -192,192 +303,325 @@
             color: #666;
             font-size: 0.8rem;
         }
+        hr {
+            border: none;
+            height: 1px;
+            background: #222;
+            margin: 2rem 0;
+        }
 
-        @media (max-width: 768px) {
+        @media (max-width: 880px) {
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                transform: translateX(-100%);
+                width: 270px;
+                z-index: 300;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            .app-wrapper {
+                display: block;
+            }
             .container {
                 padding: 0 16px;
             }
             .hero h2 {
                 font-size: 1.8rem;
             }
-            .section-title {
-                font-size: 1.5rem;
-            }
-            .nav-links {
-                gap: 1rem;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(3px);
+            z-index: 250;
+            display: none;
+        }
+        .overlay.active {
+            display: block;
+        }
+        .close-sidebar {
+            display: none;
+            background: none;
+            border: none;
+            color: #e74c3c;
+            font-size: 28px;
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            cursor: pointer;
+        }
+        @media (max-width: 880px) {
+            .close-sidebar {
+                display: block;
             }
         }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <div class="container header-inner">
-        <div class="logo">
-            <h1>💰 EconomyBot-DBS</h1>
-            <p>игровая экономика в Telegram</p>
+<div class="app-wrapper">
+    <aside class="sidebar" id="sidebar">
+        <button class="close-sidebar" id="closeSidebarBtn">✕</button>
+        <div class="logo-mini">
+            <h3>💰 DBS</h3>
+            <p>экономическая вселенная</p>
         </div>
-        <div class="nav-links">
-            <a href="#start">🚀 Старт</a>
-            <a href="#economy">💰 Баланс</a>
-            <a href="#business">🏢 Бизнес</a>
-            <a href="#mining">⛏️ Майнинг</a>
-            <a href="#games">🎮 Игры</a>
-            <a href="#realty">🏠 Недвижимость</a>
-            <a href="#bank">🏦 Банк</a>
-            <a href="#farm">🌾 Ферма</a>
-            <a href="#top">🏆 Топы</a>
-            <a href="#bonus">🎁 Бонусы</a>
+        <nav>
+            <ul>
+                <li><a href="#start">🚀 Старт</a></li>
+                <li><a href="#economy">💰 Баланс</a></li>
+                <li><a href="#business">🏢 Бизнес</a></li>
+                <li><a href="#mining">⛏️ Майнинг</a></li>
+                <li><a href="#games">🎮 Игры</a></li>
+                <li><a href="#realty">🏠 Недвижимость</a></li>
+                <li><a href="#bank">🏦 Банк</a></li>
+                <li><a href="#farm">🌾 Ферма</a></li>
+                <li><a href="#top">🏆 Топы</a></li>
+                <li><a href="#bonus">🎁 Бонусы</a></li>
+                <li class="achievement-nav-btn"><a href="#achievementsOnly">🏅 Ачивки</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="overlay" id="overlay"></div>
+
+    <main class="main-content">
+        <div class="header">
+            <div class="container header-inner">
+                <div class="logo">
+                    <h1>💰 EconomyBot-DBS</h1>
+                    <p>игровая экономика в Telegram</p>
+                </div>
+                <div class="nav-links">
+                    <a href="#start">Старт</a>
+                    <a href="#economy">Баланс</a>
+                    <a href="#business">Бизнес</a>
+                    <a href="#mining">Майнинг</a>
+                    <a href="#games">Игры</a>
+                    <a href="#realty">Недвижимость</a>
+                    <a href="#achievementsOnly">Ачивки</a>
+                </div>
+            </div>
         </div>
-    </div>
+
+        <div class="hero">
+            <div class="container">
+                <h2>Добро пожаловать в <span class="hero-accent">EconomyBot-DBS</span></h2>
+                <p>Ваша личная экономическая империя: бизнесы, майнинг, недвижимость, аукционы и многое другое.<br>
+                Все команды работают в личных сообщениях и группах (бота нужно сделать администратором).</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- СТАРТ -->
+            <div id="start" class="section">
+                <h2 class="section-title">🚀 Первые шаги</h2>
+                <div class="info-box">
+                    <strong>📌 /start</strong> — зарегистрироваться и получить <strong>1 000 RUB</strong> стартового капитала.<br>
+                    💡 После регистрации вам станут доступны все команды бота.
+                </div>
+            </div>
+
+            <!-- ЭКОНОМИКА -->
+            <div id="economy" class="section">
+                <h2 class="section-title">💰 Баланс и переводы</h2>
+                <div class="cards-grid">
+                    <div class="cmd-card"><span class="cmd-name">/bal</span><div class="cmd-desc">Показать ваш баланс в RUB, USD, EUR, BTC и общую сумму.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/pay @user сумма RUB</span><div class="cmd-desc">Перевод другому игроку (комиссия 0.5%).</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/transfer сумма из в</span><div class="cmd-desc">Обмен валют (RUB, USD, EUR, BTC) — комиссия 1%.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/stock</span><div class="cmd-desc">Актуальные курсы USD/RUB, EUR/RUB и BTC/USD.</div></div>
+                </div>
+            </div>
+
+            <!-- БИЗНЕС -->
+            <div id="business" class="section">
+                <h2 class="section-title">🏢 Бизнесы</h2>
+                <div class="cards-grid">
+                    <div class="cmd-card"><span class="cmd-name">/bizshop</span><div class="cmd-desc">Магазин бизнесов (русские, американские, европейские).</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/buybiz ID</span><div class="cmd-desc">Купить бизнес — приносит доход каждый час.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/mybiz</span><div class="cmd-desc">Список ваших бизнесов и доход/час.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/upgrades ID тип</span><div class="cmd-desc">Улучшить бизнес: income (+20% дохода) или tax (-3% налога).</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/collect</span><div class="cmd-desc">Ручной сбор прибыли с бизнесов и майнинга.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/givbiz @user ID</span><div class="cmd-desc">Передать бизнес другому игроку.</div></div>
+                </div>
+                <div class="info-box">💡 Прибыль с бизнесов начисляется автоматически каждый час.</div>
+            </div>
+
+            <!-- МАЙНИНГ -->
+            <div id="mining" class="section">
+                <h2 class="section-title">⛏️ Майнинг</h2>
+                <div class="cards-grid">
+                    <div class="cmd-card"><span class="cmd-name">/shopmining</span><div class="cmd-desc">Магазин оборудования: видеокарты, ASIC, фермы (цена в USD).</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/buymining ID</span><div class="cmd-desc">Купить оборудование (мощность в BTC/3ч).</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/mymining</span><div class="cmd-desc">Ваше оборудование, общая мощность и доходность.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/sellmining ID</span><div class="cmd-desc">Продать оборудование за 70% от цены.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/miningstats</span><div class="cmd-desc">Статистика майнинга: окупаемость, ежедневная прибыль.</div></div>
+                </div>
+                <div class="info-box">⚡ Прибыль с майнинга начисляется автоматически раз в 3 часа. Максимум — 1000 единиц оборудования.</div>
+            </div>
+
+            <!-- ИГРЫ -->
+            <div id="games" class="section">
+                <h2 class="section-title">🎮 Азартные игры</h2>
+                <div class="cards-grid">
+                    <div class="cmd-card"><span class="cmd-name">/casino сумма RUB</span><div class="cmd-desc">Однорукий бандит. Джекпот x8, комбинации до x4.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/cube сумма RUB</span><div class="cmd-desc">Кубики с ботом — выигрыш зависит от разницы очков.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/basketball /football /bowling</span><div class="cmd-desc">Спортивные игры с множителями до x3.0.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/mystats</span><div class="cmd-desc">Ваша статистика: сколько побед, поражений и общий выигрыш.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/gamecd</span><div class="cmd-desc">Узнать оставшееся время до следующей игры.</div></div>
+                </div>
+            </div>
+
+            <!-- НЕДВИЖИМОСТЬ -->
+            <div id="realty" class="section">
+                <h2 class="section-title">🏡 Недвижимость и аренда</h2>
+                <div class="cards-grid">
+                    <div class="cmd-card"><span class="cmd-name">/shopned</span><div class="cmd-desc">Магазин: дома (RUB) и транспорт (RUB).</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/buyned houseID</span><div class="cmd-desc">Купить дом и сдавать в аренду.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/buyned carID</span><div class="cmd-desc">Купить автомобиль и улучшать его.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/myned</span><div class="cmd-desc">Управление недвижимостью: сдать в аренду, улучшить, продать.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/setrent ID_дома цена</span><div class="cmd-desc">Установить стоимость аренды дома.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/rent @владелец ID</span><div class="cmd-desc">Арендовать дом у другого игрока (цена в час).</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/rentlist</span><div class="cmd-desc">Список домов, доступных для аренды.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/unrent</span><div class="cmd-desc">Съехать из арендованного жилья.</div></div>
+                </div>
+            </div>
+
+            <!-- БАНК -->
+            <div id="bank" class="section">
+                <h2 class="section-title">🏦 Банк и проценты</h2>
+                <div class="cards-grid">
+                    <div class="cmd-card"><span class="cmd-name">/bank</span><div class="cmd-desc">Баланс в банке, начисление процентов (RUB).</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/paybank сумма RUB</span><div class="cmd-desc">Положить деньги в банк — +2% каждые 10 минут.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/sellbank сумма RUB</span><div class="cmd-desc">Снять RUB с банковского счёта.</div></div>
+                </div>
+            </div>
+
+            <!-- ФЕРМА -->
+            <div id="farm" class="section">
+                <h2 class="section-title">🌾 Ферма и мешок</h2>
+                <div class="cards-grid">
+                    <div class="cmd-card"><span class="cmd-name">/farm , ферма , урожай</span><div class="cmd-desc">Собрать урожай раз в 2 часа. Награда 1–15 🪙 Койн-DBS.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/bag , мешок</span><div class="cmd-desc">Ваш уровень, прогресс и баланс фермерских монет.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/farmtop</span><div class="cmd-desc">Топ-25 фермеров по количеству 🪙 Койн-DBS.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/myfarmrank</span><div class="cmd-desc">Ваше место в рейтинге фермеров.</div></div>
+                </div>
+            </div>
+
+            <!-- ТОПЫ -->
+            <div id="top" class="section">
+                <h2 class="section-title">🏆 Таблицы лидеров</h2>
+                <div class="cards-grid">
+                    <div class="cmd-card"><span class="cmd-name">/top</span><div class="cmd-desc">Глобальный топ-25 по общему богатству (RUB).</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/topchat</span><div class="cmd-desc">Самые активные участники текущего чата (по количеству сообщений).</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/myrank</span><div class="cmd-desc">Ваша позиция в глобальном топе и отставание до топ‑10.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/mychatrank</span><div class="cmd-desc">Ваше место в топе активности этого чата.</div></div>
+                </div>
+            </div>
+
+            <!-- БОНУСЫ -->
+            <div id="bonus" class="section">
+                <h2 class="section-title">🎁 Бонусы и награды</h2>
+                <div class="cards-grid">
+                    <div class="cmd-card"><span class="cmd-name">/bonus</span><div class="cmd-desc">Ежедневный бонус (от 1000₽ до 7000₽). 7-дневный цикл.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/bonusinfo</span><div class="cmd-desc">Информация о следующем бонусе и дне цикла.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/awards</span><div class="cmd-desc">Ваши медали и награды.</div></div>
+                    <div class="cmd-card"><span class="cmd-name">/active</span><div class="cmd-desc">Сгенерировать красивый HTML-отчёт с круговой диаграммой баланса.</div></div>
+                </div>
+            </div>
+
+            <!-- АЧИВКИ - 10 рамок 1264x816 -->
+            <div id="achievementsOnly" class="achievements-pure">
+                <div class="achievements-title">
+                    🏅 ГАЛЕРЕЯ АЧИВОК 🏅
+                    <span>10 уникальных</span>
+                </div>
+                <div class="gallery-strict">
+                    <div class="achievement-frame"><img src="images/ph1.png" alt="Ачивка 1"><div class="frame-caption">Игрок Года</div></div>
+                    <div class="achievement-frame"><img src="images/ph2.png" alt="Ачивка 2"><div class="frame-caption">⛏️ Властелин майнинга</div></div>
+                    <div class="achievement-frame"><img src="images/ph3.png" alt="Ачивка 3"><div class="frame-caption">🏦 Банковский магнат</div></div>
+                    <div class="achievement-frame"><img src="images/ph4.png" alt="Ачивка 4"><div class="frame-caption">🌾 Король фермы</div></div>
+                    <div class="achievement-frame"><img src="images/ph5.png" alt="Ачивка 5"><div class="frame-caption">Адвокат</div></div>
+                    <div class="achievement-frame"><img src="images/ph6.png" alt="Ачивка 6"><div class="frame-caption">🎲 Неуловимый везунчик</div></div>
+                    <div class="achievement-frame"><img src="images/ph7.png" alt="Ачивка 7"><div class="frame-caption">🏡 Арендный барон</div></div>
+                    <div class="achievement-frame"><img src="images/ph8.png" alt="Ачивка 8"><div class="frame-caption">🎁 Легенда бонусов</div></div>
+                    <div class="achievement-frame"><img src="images/ph9.png" alt="Ачивка 9"><div class="frame-caption">🏆 Абсолютный топ</div></div>
+                    <div class="achievement-frame"><img src="images/ph10.png" alt="Ачивка 10"><div class="frame-caption">💎 Легенда сервера</div></div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="info-box" style="background: #080808; text-align: center;">
+                💬 <strong>Нужна помощь?</strong> Напишите <code>/help</code> в чате с ботом.<br>
+                🤖 <strong>Официальный бот:</strong> @GameDBScommunity_bot<br>
+                🔒 <strong>Private License</strong> — просмотр разрешён, копирование и распространение запрещены.<br>
+                © 2026 i000993i. All rights reserved.
+            </div>
+        </div>
+
+        <div class="footer">
+            EconomyBot-DBS — автор i000993i | Все команды работают в личных сообщениях и группах.<br>
+            Дизайн: чёрный + акцент «красный» | Версия 2.0 | Ачивки 1264x816
+        </div>
+    </main>
 </div>
 
-<div class="hero">
-    <div class="container">
-        <h2>Добро пожаловать в <span class="hero-accent">EconomyBot-DBS</span></h2>
-        <p>Ваша личная экономическая империя: бизнесы, майнинг, недвижимость, аукционы и многое другое.<br>
-        Все команды работают в личных сообщениях и группах (бота нужно сделать администратором).</p>
-    </div>
-</div>
+<button class="mobile-menu-toggle" id="menuToggleBtn">☰</button>
 
-<div class="container">
+<script>
+    (function() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const menuToggle = document.getElementById('menuToggleBtn');
+        const closeSidebarBtn = document.getElementById('closeSidebarBtn');
 
-    <!-- СТАРТ -->
-    <div id="start" class="section">
-        <h2 class="section-title">🚀 Первые шаги</h2>
-        <div class="info-box">
-            <strong>📌 /start</strong> — зарегистрироваться и получить <strong>1 000 RUB</strong> стартового капитала.<br>
-            💡 После регистрации вам станут доступны все команды бота.
-        </div>
-    </div>
+        function openSidebar() {
+            sidebar.classList.add('open');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
-    <!-- ЭКОНОМИКА / БАЛАНС -->
-    <div id="economy" class="section">
-        <h2 class="section-title">💰 Баланс и переводы</h2>
-        <div class="cards-grid">
-            <div class="cmd-card"><span class="cmd-name">/bal</span><div class="cmd-desc">Показать ваш баланс в RUB, USD, EUR, BTC и общую сумму.</div></div>
-            <div class="cmd-card"><span class="cmd-name">/pay @user сумма RUB</span><div class="cmd-desc">Перевод другому игроку (комиссия 0.5%).</div><div class="cmd-example">/pay @durov 1000 RUB</div></div>
-            <div class="cmd-card"><span class="cmd-name">/transfer сумма из в</span><div class="cmd-desc">Обмен валют (RUB, USD, EUR, BTC) — комиссия 1%.</div><div class="cmd-example">/transfer 100 RUB USD</div></div>
-            <div class="cmd-card"><span class="cmd-name">/stock</span><div class="cmd-desc">Актуальные курсы USD/RUB, EUR/RUB и BTC/USD.</div></div>
-        </div>
-    </div>
+        if (menuToggle) menuToggle.addEventListener('click', openSidebar);
+        if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
 
-    <!-- БИЗНЕСЫ -->
-    <div id="business" class="section">
-        <h2 class="section-title">🏢 Бизнесы</h2>
-        <div class="cards-grid">
-            <div class="cmd-card"><span class="cmd-name">/bizshop</span><div class="cmd-desc">Магазин бизнесов (русские, американские, европейские).</div></div>
-            <div class="cmd-card"><span class="cmd-name">/buybiz ID</span><div class="cmd-desc">Купить бизнес — приносит доход каждый час.</div><div class="cmd-example">/buybiz 5</div></div>
-            <div class="cmd-card"><span class="cmd-name">/mybiz</span><div class="cmd-desc">Список ваших бизнесов и доход/час.</div></div>
-            <div class="cmd-card"><span class="cmd-name">/upgrades ID тип</span><div class="cmd-desc">Улучшить бизнес: income (+20% дохода) или tax (-3% налога).</div><div class="cmd-example">/upgrades 1 income</div></div>
-            <div class="cmd-card"><span class="cmd-name">/collect</span><div class="cmd-desc">Ручной сбор прибыли с бизнесов и майнинга.</div></div>
-            <div class="cmd-card"><span class="cmd-name">/givbiz @user ID</span><div class="cmd-desc">Передать бизнес другому игроку.</div><div class="cmd-example">/givbiz @durov 2</div></div>
-        </div>
-        <div class="info-box">💡 Прибыль с бизнесов начисляется автоматически каждый час — не нужно собирать вручную (но можно ускорить /collect).</div>
-    </div>
+        document.querySelectorAll('.sidebar a, .nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 880) closeSidebar();
+                const hash = this.getAttribute('href');
+                if (hash && hash.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.getElementById(hash.substring(1));
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
 
-    <!-- МАЙНИНГ -->
-    <div id="mining" class="section">
-        <h2 class="section-title">⛏️ Майнинг</h2>
-        <div class="cards-grid">
-            <div class="cmd-card"><span class="cmd-name">/shopmining</span><div class="cmd-desc">Магазин оборудования: видеокарты, ASIC, фермы (цена в USD).</div></div>
-            <div class="cmd-card"><span class="cmd-name">/buymining ID</span><div class="cmd-desc">Купить оборудование (мощность в BTC/3ч).</div><div class="cmd-example">/buymining 1</div></div>
-            <div class="cmd-card"><span class="cmd-name">/mymining</span><div class="cmd-desc">Ваше оборудование, общая мощность и доходность.</div></div>
-            <div class="cmd-card"><span class="cmd-name">/sellmining ID</span><div class="cmd-desc">Продать оборудование за 70% от цены.</div><div class="cmd-example">/sellmining 5</div></div>
-            <div class="cmd-card"><span class="cmd-name">/miningstats</span><div class="cmd-desc">Статистика майнинга: окупаемость, ежедневная прибыль.</div></div>
-        </div>
-        <div class="info-box">⚡ Прибыль с майнинга начисляется автоматически раз в 3 часа. Максимум — 1000 единиц оборудования.</div>
-    </div>
-
-    <!-- ИГРЫ -->
-    <div id="games" class="section">
-        <h2 class="section-title">🎮 Азартные игры</h2>
-        <div class="cards-grid">
-            <div class="cmd-card"><span class="cmd-name">/casino сумма RUB</span><div class="cmd-desc">Однорукий бандит. Джекпот x8, комбинации до x4.</div><div class="cmd-example">/casino 100 RUB</div></div>
-            <div class="cmd-card"><span class="cmd-name">/cube сумма RUB</span><div class="cmd-desc">Кубики с ботом — выигрыш зависит от разницы очков.</div><div class="cmd-example">/cube 50 USD</div></div>
-            <div class="cmd-card"><span class="cmd-name">/basketball /football /bowling</span><div class="cmd-desc">Спортивные игры с множителями до x3.0.</div><div class="cmd-example">/basketball 200 RUB</div></div>
-            <div class="cmd-card"><span class="cmd-name">/mystats</span><div class="cmd-desc">Ваша статистика: сколько побед, поражений и общий выигрыш.</div></div>
-            <div class="cmd-card"><span class="cmd-name">/gamecd</span><div class="cmd-desc">Узнать оставшееся время до следующей игры.</div></div>
-        </div>
-        <div class="info-box">🎯 Все игры сбалансированы: шанс выигрыша ~35–40%, чтобы играть было интересно, но без легких денег.</div>
-    </div>
-
-    <!-- НЕДВИЖИМОСТЬ -->
-    <div id="realty" class="section">
-        <h2 class="section-title">🏡 Недвижимость и аренда</h2>
-        <div class="cards-grid">
-            <div class="cmd-card"><span class="cmd-name">/shopned</span><div class="cmd-desc">Магазин: дома (RUB) и транспорт (RUB).</div></div>
-            <div class="cmd-card"><span class="cmd-name">/buyned houseID</span><div class="cmd-desc">Купить дом и сдавать в аренду.</div><div class="cmd-example">/buyned house3</div></div>
-            <div class="cmd-card"><span class="cmd-name">/buyned carID</span><div class="cmd-desc">Купить автомобиль и улучшать его.</div><div class="cmd-example">/buyned car5</div></div>
-            <div class="cmd-card"><span class="cmd-name">/myned</span><div class="cmd-desc">Управление недвижимостью: сдать в аренду, улучшить, продать.</div></div>
-            <div class="cmd-card"><span class="cmd-name">/setrent ID_дома цена</span><div class="cmd-desc">Установить стоимость аренды дома.</div><div class="cmd-example">/setrent 1 5000</div></div>
-            <div class="cmd-card"><span class="cmd-name">/rent @владелец ID</span><div class="cmd-desc">Арендовать дом у другого игрока (цена в час).</div><div class="cmd-example">/rent @durov 2</div></div>
-            <div class="cmd-card"><span class="cmd-name">/rentlist</span><div class="cmd-desc">Список домов, доступных для аренды.</div></div>
-            <div class="cmd-card"><span class="cmd-name">/unrent</span><div class="cmd-desc">Съехать из арендованного жилья.</div></div>
-        </div>
-        <div class="info-box">📌 Налог на недвижимость списывается раз в день. Дома приносят пассивный доход через аренду.</div>
-    </div>
-
-    <!-- БАНК -->
-    <div id="bank" class="section">
-        <h2 class="section-title">🏦 Банк и проценты</h2>
-        <div class="cards-grid">
-            <div class="cmd-card"><span class="cmd-name">/bank</span><div class="cmd-desc">Баланс в банке, начисление процентов (RUB).</div></div>
-            <div class="cmd-card"><span class="cmd-name">/paybank сумма RUB</span><div class="cmd-desc">Положить деньги в банк — +2% каждые 10 минут.</div><div class="cmd-example">/paybank 5000 RUB</div></div>
-            <div class="cmd-card"><span class="cmd-name">/sellbank сумма RUB</span><div class="cmd-desc">Снять RUB с банковского счёта.</div><div class="cmd-example">/sellbank 2000 RUB</div></div>
-        </div>
-        <div class="info-box">📈 Проценты начисляются только на RUB. Доллары и евро в банке просто хранятся без процентов.</div>
-    </div>
-
-    <!-- ФЕРМА -->
-    <div id="farm" class="section">
-        <h2 class="section-title">🌾 Ферма и мешок</h2>
-        <div class="cards-grid">
-            <div class="cmd-card"><span class="cmd-name">/farm , ферма , урожай</span><div class="cmd-desc">Собрать урожай раз в 2 часа. Награда 1–15 🪙 Койн-DBS.</div></div>
-            <div class="cmd-card"><span class="cmd-name">/bag , мешок</span><div class="cmd-desc">Ваш уровень, прогресс и баланс фермерских монет.</div></div>
-            <div class="cmd-card"><span class="cmd-name">/farmtop</span><div class="cmd-desc">Топ-25 фермеров по количеству 🪙 Койн-DBS.</div></div>
-            <div class="cmd-card"><span class="cmd-name">/myfarmrank</span><div class="cmd-desc">Ваше место в рейтинге фермеров.</div></div>
-        </div>
-        <div class="info-box">🌱 Уровни фермера: новичок → любитель → опытный → фермер → барин → король фермы. Каждые 100 монет = новый уровень.</div>
-    </div>
-
-    <!-- ТОПЫ -->
-    <div id="top" class="section">
-        <h2 class="section-title">🏆 Таблицы лидеров</h2>
-        <div class="cards-grid">
-            <div class="cmd-card"><span class="cmd-name">/top</span><div class="cmd-desc">Глобальный топ-25 по общему богатству (RUB).</div></div>
-            <div class="cmd-card"><span class="cmd-name">/topchat</span><div class="cmd-desc">Самые активные участники текущего чата (по количеству сообщений).</div></div>
-            <div class="cmd-card"><span class="cmd-name">/myrank</span><div class="cmd-desc">Ваша позиция в глобальном топе и отставание до топ‑10.</div></div>
-            <div class="cmd-card"><span class="cmd-name">/mychatrank</span><div class="cmd-desc">Ваше место в топе активности этого чата.</div></div>
-        </div>
-    </div>
-
-    <!-- БОНУСЫ -->
-    <div id="bonus" class="section">
-        <h2 class="section-title">🎁 Бонусы и награды</h2>
-        <div class="cards-grid">
-            <div class="cmd-card"><span class="cmd-name">/bonus</span><div class="cmd-desc">Ежедневный бонус (от 1000₽ до 7000₽). 7-дневный цикл.</div></div>
-            <div class="cmd-card"><span class="cmd-name">/bonusinfo</span><div class="cmd-desc">Информация о следующем бонусе и дне цикла.</div></div>
-            <div class="cmd-card"><span class="cmd-name">/awards</span><div class="cmd-desc">Ваши медали и награды.</div></div>
-            <div class="cmd-card"><span class="cmd-name">/active</span><div class="cmd-desc">Сгенерировать красивый HTML-отчёт с круговой диаграммой баланса.</div></div>
-        </div>
-        <div class="info-box">⚠️ Если пропустить бонус более чем на 48 часов, прогресс сбрасывается до 1‑го дня.</div>
-    </div>
-
-    <hr>
-
-    <div class="info-box" style="background: #080808; text-align: center;">
-        💬 <strong>Нужна помощь?</strong> Напишите <code>/help</code> в чате с ботом или обратитесь к администратору.<br>
-        🤖 <strong>Официальный бот:</strong> @GameDBScommunity_bot<br>
-        📅 Документация актуальна на апрель 2026 года.
-    </div>
-
-</div>
-
-<div class="footer">
-    EconomyBot-DBS — автор i000993i | Все команды работают в личных сообщениях и группах.<br>
-    Дизайн: чёрный + акцент «красный» | Версия 2.0
-</div>
-
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 880 && sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    })();
+</script>
 </body>
-                                                                                                                                             </html>
+</html>
