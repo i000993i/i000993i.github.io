@@ -90,12 +90,8 @@
             color: #555;
         }
         @media (max-width: 768px) {
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            .projects-hero h1 {
-                font-size: 1.8rem;
-            }
+            .projects-grid { grid-template-columns: 1fr; }
+            .projects-hero h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -103,13 +99,13 @@
     <div class="header">
         <div class="container header-inner">
             <div class="logo">
-                <h1>💰 DBScommunity Команда</h1>
-                <p>====================================</p>
+                <h1>💎 DBScommunity</h1>
+                <p>проекты студии</p>
             </div>
             <div class="nav-links">
-                <a href="index.html">Главная</a>
-                <a href="projects.html" style="color:#e74c3c;">📁 Проекты</a>
-                <a href="index.html#reviews">Отзывы</a>
+                <a href="index.html">О студии</a>
+                <a href="projects.html" style="color:#e74c3c;">Проекты</a>
+                <a href="economy.html">EconomyBot</a>
             </div>
         </div>
     </div>
@@ -139,27 +135,28 @@
     <script>
         const projects = [
             {
+                title: "EconomyBot-DBS",
+                description: "Экономический Telegram-бот с бизнесами, майнингом, недвижимостью, банком, играми и фермой. Полноценная экономическая вселенная в чате.",
+                stack: ["Python", "Aiogram 3.27", "Telegram Bot API"],
+                image: "project/project1.png",
+                link: "economy.html"
+            },
+            {
                 title: "MUSIC-DBScommunity",
                 description: "Музыкальный плеер для прослушки треков.",
                 stack: ["C#", ".NET"],
-                image: "project/project1.png"
-            },
-            {
-                title: "Нету проекта",
-                description: "Описание.",
-                stack: ["Стек", "Стек", "Стек", "Стек"],
                 image: "project/project2.png"
             },
             {
-                title: "Нету проекта",
-                description: "Описание.",
-                stack: ["Стек", "Стек", "Стек", "Стек"],
+                title: "Zametka-DBS",
+                description: "Zametka — Markdown-редактор заметок с открытым кодом, десктопный (PyQt6), с Rust-ядром для скорости. Obsidian-лайт.",
+                stack: ["Python", "Rust"],
                 image: "project/project3.png"
             },
             {
-                title: "Нету проекта",
-                description: "Описание.",
-                stack: ["Стек", "Стек", "Стек", "Стек"],
+                title: "SQLite Table Viewer",
+                description: "SQLite Table Viewer - приложение для просмотра и редактирования SQLite баз данных. Позволяет просматривать .db файлы, выполнять SQL запросы, импортировать/экспортировать данные.",
+                stack: ["Python", "PowerShell"],
                 image: "project/project4.png"
             }
         ];
@@ -179,18 +176,24 @@
                 return;
             }
 
-            container.innerHTML = projects.map(project => `
-                <div class="project-card">
-                    <img src="${project.image}" alt="${escapeHtml(project.title)}" class="project-image" onerror="this.src='https://placehold.co/800x450/2c2c2c/e74c3c?text=${encodeURIComponent(project.title)}'">
-                    <div class="project-info">
-                        <h3 class="project-title">${escapeHtml(project.title)}</h3>
-                        <p class="project-description">${escapeHtml(project.description)}</p>
-                        <div class="project-stack">
-                            ${project.stack.map(tech => `<span class="stack-tag">${escapeHtml(tech)}</span>`).join('')}
+            container.innerHTML = projects.map(project => {
+                const linkStart = project.link ? `<a href="${project.link}" style="text-decoration:none;display:block;">` : '';
+                const linkEnd = project.link ? '</a>' : '';
+                return `
+                    ${linkStart}
+                    <div class="project-card">
+                        <img src="${project.image}" alt="${escapeHtml(project.title)}" class="project-image" onerror="this.src='https://placehold.co/800x450/2c2c2c/e74c3c?text=${encodeURIComponent(project.title)}'">
+                        <div class="project-info">
+                            <h3 class="project-title">${escapeHtml(project.title)}</h3>
+                            <p class="project-description">${escapeHtml(project.description)}</p>
+                            <div class="project-stack">
+                                ${project.stack.map(tech => `<span class="stack-tag">${escapeHtml(tech)}</span>`).join('')}
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                    ${linkEnd}
+                `;
+            }).join('');
         }
 
         loadProjects();

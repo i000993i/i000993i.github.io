@@ -1,16 +1,19 @@
 ваш-репозиторий/
-├── index.html
-├── style.css
-├── javascript.js
+├── index.html              # Главная — о студии DBScommunity
+├── economy.html            # Документация EconomyBot-DBS
+├── projects.html           # Страница проектов студии
+├── style.css               # Общие стили (темы, glassmorphism, адаптив)
+├── javascript.js           # Мобильное меню, навигация
 ├── function/
-│   ├── theme.js          # Переключение темы
-│   ├── reviews.js        # Отзывы игроков (с защитой)
-│   ├── animations.js     # Анимации при загрузке
-│   ├── copyCommand.js    # Копирование команд
-│   └── scrollTop.js      # Кнопка "наверх"
+│   ├── theme.js            # Переключение темы
+│   ├── reviews.js          # Отзывы игроков (с защитой)
+│   ├── animations.js       # Анимации при загрузке
+│   ├── copyCommand.js      # Копирование команд
+│   └── scrollTop.js        # Кнопка "наверх"
 ├── images/
 │   └── (фоновые изображения, если нужны)
 ├── logosvg/
+│   ├── icon-start.svg
 │   ├── icon-balance.svg
 │   ├── icon-business.svg
 │   ├── icon-mining.svg
@@ -20,15 +23,19 @@
 │   ├── icon-farm.svg
 │   ├── icon-top.svg
 │   ├── icon-bonus.svg
-│   └── icon-achievement.svg
-└── achiv/
-    ├── ph1.png
-    ├── ph2.png
-    ├── ph3.png
-    ├── ph4.png
-    ├── ph5.png
-    ├── ph6.png
-    ├── ph7.png
-    ├── ph8.png
-    ├── ph9.png
-    └── ph10.png
+│   ├── icon-achievements.svg
+│   ├── icon-reviews.svg
+│   └── icon-projects.svg
+├── achiv/
+│   ├── ph1.png
+│   ├── ph2.png
+│   ├── ph3.png
+│   ├── ph4.png
+│   ├── ph5.png
+│   ├── ph6.png
+│   ├── ph7.png
+│   ├── ph8.png
+│   ├── ph9.png
+│   └── ph10.png
+└── project/
+    └── project1.png

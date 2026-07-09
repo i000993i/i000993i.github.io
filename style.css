@@ -91,9 +91,13 @@ body.light-mode .sidebar {
 .sidebar nav a[data-icon="farm"]::before { background-image: url('logosvg/icon-farm.svg'); }
 .sidebar nav a[data-icon="top"]::before { background-image: url('logosvg/icon-top.svg'); }
 .sidebar nav a[data-icon="bonus"]::before { background-image: url('logosvg/icon-bonus.svg'); }
-.sidebar nav a[data-icon="achievement"]::before { background-image: url('logosvg/icon-achievement.svg'); }
+.sidebar nav a[data-icon="achievement"]::before { background-image: url('logosvg/icon-achievements.svg'); }
 .sidebar nav a[data-icon="reviews"]::before { background-image: url('logosvg/icon-reviews.svg'); }
 .sidebar nav a[data-icon="projects"]::before { background-image: url('logosvg/icon-projects.svg'); }
+
+body.dark-mode .sidebar nav a[data-icon]::before {
+    filter: brightness(0) invert(1);
+}
 
 body.light-mode .sidebar nav a[data-icon]::before {
     filter: brightness(0.3);
@@ -140,6 +144,13 @@ body.light-mode .sidebar nav a[data-icon]::before {
     color: transparent;
 }
 
+body.light-mode .sidebar .logo-mini h3 {
+    background: linear-gradient(130deg, #1a1a1a, #e74c3c);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
 .sidebar nav ul {
     list-style: none;
     margin-top: 1rem;
@@ -178,10 +189,19 @@ body.light-mode .sidebar nav a {
     border-radius: 40px;
 }
 
+body.light-mode .achievement-nav-btn {
+    background: linear-gradient(95deg, #fce8e5, #f5d6d0);
+    border: 1px solid #e74c3c;
+}
+
 .achievement-nav-btn a {
     justify-content: center;
     font-weight: 700;
     color: #f5c2b0;
+}
+
+body.light-mode .achievement-nav-btn a {
+    color: #c0392b;
 }
 
 /* ========== HEADER ========== */
@@ -212,6 +232,13 @@ body.light-mode .header {
     font-size: 1.7rem;
     font-weight: 700;
     background: linear-gradient(130deg, #ffffff, #e74c3c);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+body.light-mode .logo h1 {
+    background: linear-gradient(130deg, #1a1a1a, #e74c3c);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -298,6 +325,17 @@ body.light-mode .section-title {
 
 .cmd-card {
     padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
+}
+
+.cmd-card .cmd-desc {
+    flex: 1 1 auto;
+}
+
+.cmd-card .cmd-example {
+    margin-top: auto;
 }
 
 .cmd-name {
@@ -342,6 +380,14 @@ body.light-mode .cmd-desc {
 .info-box {
     padding: 1.2rem 1.5rem;
     margin: 1.5rem 0;
+}
+
+.info-box-dark {
+    background: #080808;
+}
+
+body.light-mode .info-box-dark {
+    background: #e8e8e8;
 }
 
 .info-box strong {
@@ -574,14 +620,14 @@ body.light-mode .project-description {
     bottom: 20px;
     right: 20px;
     background: #e74c3c;
-    border: none;
-    border-radius: 60px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
     width: 54px;
     height: 54px;
     font-size: 28px;
     color: white;
     cursor: pointer;
-    box-shadow: 0 4px 14px rgba(231, 76, 60, 0.4);
+    box-shadow: none;
     z-index: 250;
     align-items: center;
     justify-content: center;
