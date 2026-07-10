@@ -8,7 +8,6 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.5;
     scroll-behavior: smooth;
-    transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* ========== ГРАДИЕНТНЫЙ ФОН ========== */
@@ -63,6 +62,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     vertical-align: middle;
+    filter: brightness(0) invert(1);
 }
 
 .sidebar nav a[data-icon="start"]::before { background-image: url('logosvg/icon-start.svg'); }
@@ -78,12 +78,6 @@ body {
 .sidebar nav a[data-icon="achievement"]::before { background-image: url('logosvg/icon-achievements.svg'); }
 .sidebar nav a[data-icon="reviews"]::before { background-image: url('logosvg/icon-reviews.svg'); }
 .sidebar nav a[data-icon="projects"]::before { background-image: url('logosvg/icon-projects.svg'); }
-
-body.dark-mode .sidebar nav a[data-icon]::before {
-    filter: brightness(0) invert(1);
-}
-
-}
 
 /* ========== LAYOUT ========== */
 .app-wrapper {

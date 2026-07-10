@@ -19,11 +19,4 @@ document.addEventListener('DOMContentLoaded', function() {
     reviews.forEach((review, index) => {
         review.style.animationDelay = `${Math.min(0.07 * index, 0.5)}s`;
     });
-    
-    // Плавное появление всего контента
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-        document.body.style.transition = 'opacity 0.4s ease';
-        document.body.style.opacity = '1';
-    }, 50);
 });
