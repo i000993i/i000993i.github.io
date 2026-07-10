@@ -12,14 +12,9 @@ body {
 }
 
 /* ========== ГРАДИЕНТНЫЙ ФОН ========== */
-body.dark-mode {
+body {
     background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 30%, #0a0508 70%, #0d0d0d 100%);
     color: #e8e8e8;
-}
-
-body.light-mode {
-    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 30%, #f5f5f5 70%, #ffffff 100%);
-    color: #1a1a1a;
 }
 
 /* ========== СТЕКЛЯННЫЙ ЭФФЕКТ (Glassmorphism) ========== */
@@ -29,17 +24,6 @@ body.light-mode {
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 20px;
     transition: all 0.3s ease;
-}
-
-body.light-mode .cmd-card,
-body.light-mode .info-box,
-body.light-mode .review-card,
-body.light-mode .achievement-frame,
-body.light-mode .project-card,
-body.light-mode .sidebar {
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    backdrop-filter: blur(12px);
 }
 
 .cmd-card:hover, .review-card:hover, .achievement-frame:hover, .project-card:hover {
@@ -99,8 +83,6 @@ body.dark-mode .sidebar nav a[data-icon]::before {
     filter: brightness(0) invert(1);
 }
 
-body.light-mode .sidebar nav a[data-icon]::before {
-    filter: brightness(0.3);
 }
 
 /* ========== LAYOUT ========== */
@@ -144,13 +126,6 @@ body.light-mode .sidebar nav a[data-icon]::before {
     color: transparent;
 }
 
-body.light-mode .sidebar .logo-mini h3 {
-    background: linear-gradient(130deg, #1a1a1a, #e74c3c);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
 .sidebar nav ul {
     list-style: none;
     margin-top: 1rem;
@@ -178,10 +153,6 @@ body.light-mode .sidebar .logo-mini h3 {
     background: rgba(231, 76, 60, 0.15);
 }
 
-body.light-mode .sidebar nav a {
-    color: #333;
-}
-
 .achievement-nav-btn {
     background: linear-gradient(95deg, #2c0f0a, #1e0a07);
     border: 1px solid #e74c3c;
@@ -189,19 +160,10 @@ body.light-mode .sidebar nav a {
     border-radius: 40px;
 }
 
-body.light-mode .achievement-nav-btn {
-    background: linear-gradient(95deg, #fce8e5, #f5d6d0);
-    border: 1px solid #e74c3c;
-}
-
 .achievement-nav-btn a {
     justify-content: center;
     font-weight: 700;
     color: #f5c2b0;
-}
-
-body.light-mode .achievement-nav-btn a {
-    color: #c0392b;
 }
 
 /* ========== HEADER ========== */
@@ -212,11 +174,6 @@ body.light-mode .achievement-nav-btn a {
     position: sticky;
     top: 0;
     z-index: 90;
-}
-
-body.light-mode .header {
-    background: rgba(240, 240, 240, 0.8);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .header-inner {
@@ -232,13 +189,6 @@ body.light-mode .header {
     font-size: 1.7rem;
     font-weight: 700;
     background: linear-gradient(130deg, #ffffff, #e74c3c);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-body.light-mode .logo h1 {
-    background: linear-gradient(130deg, #1a1a1a, #e74c3c);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -266,10 +216,6 @@ body.light-mode .logo h1 {
     color: #e74c3c;
 }
 
-body.light-mode .nav-links a {
-    color: #555;
-}
-
 /* ========== HERO ========== */
 .hero {
     padding: 60px 0 40px;
@@ -293,10 +239,6 @@ body.light-mode .nav-links a {
     color: #aaa;
 }
 
-body.light-mode .hero p {
-    color: #555;
-}
-
 /* ========== СЕКЦИИ ========== */
 .section {
     margin: 50px 0;
@@ -310,10 +252,6 @@ body.light-mode .hero p {
     padding-left: 1rem;
     border-left: 4px solid #e74c3c;
     color: #fff;
-}
-
-body.light-mode .section-title {
-    color: #1a1a1a;
 }
 
 /* ========== КАРТОЧКИ КОМАНД ========== */
@@ -361,10 +299,6 @@ body.light-mode .section-title {
     line-height: 1.4;
 }
 
-body.light-mode .cmd-desc {
-    color: #555;
-}
-
 .cmd-example {
     font-size: 0.8rem;
     color: #e74c3c;
@@ -384,10 +318,6 @@ body.light-mode .cmd-desc {
 
 .info-box-dark {
     background: #080808;
-}
-
-body.light-mode .info-box-dark {
-    background: #e8e8e8;
 }
 
 .info-box strong {
@@ -568,28 +498,9 @@ body.light-mode .info-box-dark {
     gap: 12px;
 }
 
-body.light-mode .project-description {
-    color: #555;
 }
 
 /* ========== КНОПКИ ========== */
-.theme-btn {
-    background: #e74c3c;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 30px;
-    color: white;
-    cursor: pointer;
-    font-weight: 600;
-    transition: 0.2s;
-    width: 100%;
-}
-
-.theme-btn:hover {
-    background: #c0392b;
-    transform: scale(1.02);
-}
-
 .scroll-top-btn {
     position: fixed;
     bottom: 30px;

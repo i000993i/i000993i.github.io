@@ -146,6 +146,16 @@
         body.light-mode .studio-hero .tagline {
             color: #555;
         }
+        body.light-mode .studio-card,
+        body.light-mode .team-member,
+        body.light-mode .cta-section {
+            background: rgba(255, 255, 255, 0.6);
+            border-color: rgba(0, 0, 0, 0.08);
+        }
+        body.light-mode .studio-card p,
+        body.light-mode .studio-hero .tagline {
+            color: #555;
+        }
         @media (max-width: 768px) {
             .studio-hero h1 { font-size: 2rem; }
             .cta-section h2 { font-size: 1.5rem; }
@@ -168,8 +178,7 @@
                 </ul>
             </nav>
             <div style="margin-top: 2rem; text-align: center;">
-                <button id="themeToggle" class="theme-btn">🌙 Тёмная тема</button>
-            </div>
+                            </div>
         </aside>
 
         <div class="overlay" id="overlay"></div>
@@ -264,7 +273,6 @@
     <button class="scroll-top-btn" id="scrollTopBtn">↑</button>
 
     <script src="javascript.js"></script>
-    <script src="function/theme.js"></script>
     <script src="function/animations.js"></script>
     <script src="function/scrollTop.js"></script>
 </body>
